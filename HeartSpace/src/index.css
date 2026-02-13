@@ -1,1 +1,144 @@
 @import "tailwindcss";
+
+/* ১. ডার্ক মোড এবং কাস্টম ভ্যারিয়েন্ট */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Default: Loved Theme (Pink/Red) */
+  --primary-color: #ee2b8c;
+  --primary-hover: #d41b75;
+  --bg-dark: #12060b; 
+  --surface-dark: #1d0b14;
+  --accent-glow: rgba(238, 43, 140, 0.2);
+  --text-main: #f8f6f7;
+  
+  font-family: "Plus Jakarta Sans", sans-serif;
+}
+
+/* ২. মুড ভিত্তিক ডাইনামিক থিম কালার */
+
+/* Happy - Yellow/Orange */
+[data-theme="happy"] {
+  --primary-color: #f59e0b;
+  --primary-hover: #d97706;
+  --bg-dark: #130e02;
+  --surface-dark: #1f1601;
+  --accent-glow: rgba(245, 158, 11, 0.2);
+}
+
+/* Sad - Blue */
+[data-theme="sad"] {
+  --primary-color: #3b82f6;
+  --primary-hover: #2563eb;
+  --bg-dark: #050810;
+  --surface-dark: #0c1222;
+  --accent-glow: rgba(59, 130, 246, 0.2);
+}
+
+/* Angry - Red/Orange */
+[data-theme="angry"] {
+  --primary-color: #ef4444;
+  --primary-hover: #dc2626;
+  --bg-dark: #110404;
+  --surface-dark: #1e0909;
+  --accent-glow: rgba(239, 68, 68, 0.2);
+}
+
+/* Anxious/Dreamy - Purple */
+[data-theme="anxious"], [data-theme="dreamy"] {
+  --primary-color: #8b5cf6;
+  --primary-hover: #7c3aed;
+  --bg-dark: #0a0814;
+  --surface-dark: #141126;
+  --accent-glow: rgba(139, 92, 246, 0.2);
+}
+
+/* Grateful - Green */
+[data-theme="grateful"] {
+  --primary-color: #10b981;
+  --primary-hover: #059669;
+  --bg-dark: #020d0a;
+  --surface-dark: #051a14;
+  --accent-glow: rgba(16, 185, 129, 0.2);
+}
+
+/* Nostalgic - Indigo */
+[data-theme="nostalgic"] {
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --bg-dark: #060712;
+  --surface-dark: #0f1129;
+  --accent-glow: rgba(99, 102, 241, 0.2);
+}
+
+/* ৩. Tailwind v4 থিম ম্যাপিং */
+@theme {
+  --color-primary: var(--primary-color);
+  --color-primary-hover: var(--primary-hover);
+  --color-background-dark: var(--bg-dark);
+  --color-surface-dark: var(--surface-dark);
+  --color-accent-glow: var(--accent-glow);
+  --color-mood-text: var(--text-main);
+  
+  --font-display: "Plus Jakarta Sans", sans-serif;
+  --font-serif: "Playfair Display", serif;
+}
+
+/* ৪. বেস স্টাইল */
+@layer base {
+  body {
+    @apply bg-background-dark text-slate-200 transition-colors duration-700 antialiased;
+  }
+}
+
+/* ৫. কাস্টম কম্পোনেন্ট ও ইউটিলিটি */
+@layer components {
+  /* গ্লাস ইফেক্ট যেটা সব মুডে কালার অ্যাডজাস্ট করবে */
+  .glass-panel {
+    background: color-mix(in srgb, var(--bg-dark), transparent 40%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid color-mix(in srgb, var(--primary-color), transparent 90%);
+  }
+
+  /* একটিভ মুড বাটন স্টাইল */
+  .mood-active {
+    background-color: var(--primary-color) !important;
+    color: white !important;
+    box-shadow: 0 0 25px var(--accent-glow);
+    transform: scale(1.05);
+  }
+
+  /* টেক্সট গ্রেডিয়েন্ট (Detail View-এর জন্য) */
+  .mood-gradient-text {
+    background: linear-gradient(to right, var(--primary-color), var(--primary-hover));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* রিচ এডিটর প্লেসহোল্ডার (Create Post-এর জন্য) */
+  .rich-editor:empty:before {
+    content: attr(data-placeholder);
+    @apply text-slate-600 italic;
+  }
+
+  /* থিম ট্রানজিশন স্মুথ করার জন্য */
+  .theme-transition {
+    @apply transition-all duration-500 ease-in-out;
+  }
+}
+
+/* ৬. কাস্টম স্ক্রলবার */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--primary-color), transparent 50%);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}

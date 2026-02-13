@@ -1,0 +1,38 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="spaceGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0B0B2B"/>
+      <stop offset="100%" stop-color="#1A1A4A"/>
+    </radialGradient>
+    <filter id="brightGlow">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- স্পেস ব্যাকগ্রাউন্ড (গাঢ় নীল) -->
+  <rect width="100" height="100" fill="url(#spaceGradient)"/>
+  
+  <!-- দূরের তারা (সাদা বিন্দু) -->
+  <circle cx="15" cy="20" r="0.8" fill="#FFFFFF"/>
+  <circle cx="85" cy="30" r="1" fill="#FFFFFF"/>
+  <circle cx="70" cy="85" r="0.6" fill="#FFFFFF"/>
+  <circle cx="25" cy="80" r="1.2" fill="#FFFFFF"/>
+  <circle cx="90" cy="70" r="0.7" fill="#FFFFFF"/>
+  
+  <!-- বড় উজ্জ্বল নক্ষত্র -->
+  <circle cx="45" cy="25" r="2.5" fill="#FFF9C4" filter="url(#brightGlow)"/>
+  
+  <!-- আইসোমেট্রিক হার্ট (3D ইফেক্টের জন্য দুটি অংশ) -->
+  <path d="M50 45 L35 60 L50 75 L65 60 L50 45 Z" fill="#FF4D6D" opacity="0.9" filter="url(#brightGlow)"/>
+  <path d="M50 45 L35 60 L35 70 L50 55 L65 70 L65 60 L50 45 Z" fill="#FF6F91" opacity="0.8"/>
+  
+  <!-- হার্টের উপরে ছোট গ্লো -->
+  <circle cx="50" cy="52" r="12" fill="#FFB6C1" opacity="0.2" filter="url(#brightGlow)"/>
+  
+  <!-- শুটিং স্টার ট্রেইল -->
+  <path d="M70 20 L85 15" stroke="#FFF9C4" stroke-width="1.5" stroke-dasharray="2 3" opacity="0.6"/>
+</svg>
