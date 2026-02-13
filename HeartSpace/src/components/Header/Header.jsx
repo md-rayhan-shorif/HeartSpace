@@ -104,10 +104,10 @@ const Header = () => {
 
           {isLoggedIn ? (
             <>
-              <NavLink to="/add-post" onClick={() => setIsMenuOpen(false)} className="text-xl font-semibold cursor-pointer text-primary">
+              <NavLink to="/add-post" onClick={() => setIsMenuOpen(false)} className={({ isActive }) => `text-xl cursor-pointer font-semibold pb-2 border-b border-white/5 ${isActive ? 'text-primary' : 'text-slate-200'}`}>
                 Write Message
               </NavLink>
-              <button onClick={handleLogout} className="text-left text-xl  font-semibold text-red-500 mt-4 flex items-center gap-2 cursor-pointer">
+              <button onClick={handleLogout} className="bg-primary text-center py-3 rounded-xl font-bold text-white  cursor-pointer items-center flex justify-center">
                 <span className="material-icons-round cursor-pointer">logout</span> Logout
               </button>
             </>
